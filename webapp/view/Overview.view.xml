@@ -1,0 +1,22 @@
+<mvc:View controllerName="eprs.walkthrough.app.controller.App" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" displayBlock="true">
+	<Page title="{i18n>page1Title}">
+		<headerContent>
+			<Button id="sayHelloDialog" text="{i18n>sayHelloDialog}" icon="sap-icon://popup-window" press="onSayHelloDialog" class="sapUiSmallMarginEnd"/>
+		</headerContent>
+		<content>
+			<IconTabBar selectedKey="Hello">
+				<items>
+					<IconTabFilter text="{i18n>iconHello}">
+						<mvc:XMLView viewName="eprs.walkthrough.app.view.Hello"/>
+					</IconTabFilter>
+					<IconTabFilter text="{i18n>iconNorthwind}" key="Hello">
+						<mvc:XMLView viewName="eprs.walkthrough.app.view.RemoteInvoices"/>
+					</IconTabFilter>
+					<IconTabFilter text="{i18n>iconJSON}">
+						<mvc:XMLView viewName="eprs.walkthrough.app.view.Invoices"/>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+	</Page>
+</mvc:View>

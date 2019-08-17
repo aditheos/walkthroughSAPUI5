@@ -1,0 +1,22 @@
+<mvc:View controllerName="eprs.walkthrough.app.controller.Invoices" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
+	<Panel class="sapUiResponsiveMargin" width="auto">
+		<List id="invoiceList" items="{ path: 'invoice>/Invoices' , sorter: { path: 'ShipperName', group:true} }">
+			<headerToolbar>
+				<Toolbar>
+					<Title text="{i18n>invoiceToolbarText}"/>
+					<ToolbarSpacer/>
+					<SearchField placeholder="{i18n>productName}" width="50%" search="onSearchInvoices"/>
+				</Toolbar>
+			</headerToolbar>
+			<items>
+				<ObjectListItem title="{invoice>Quantity} x {invoice>ProductName}"
+					number="{ parts: [{path: 'invoice>ExtendedPrice'}, {path: 'view>/currency'}], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false } }"
+					numberUnit="{view>/currency}" numberState="{=${invoice>ExtendedPrice} > 40 ? 'Error' : 'Success' }">
+					<firstStatus>
+						<ObjectStatus text="{ path: 'invoice>Status', formatter : '.formatter.statusText' }"/>
+					</firstStatus>
+				</ObjectListItem>
+			</items>
+		</List>
+	</Panel>
+</mvc:View>

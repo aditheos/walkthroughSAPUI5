@@ -1,0 +1,23 @@
+<mvc:View controllerName="eprs.walkthrough.app.controller.RemoteInvoices" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
+	<Panel class="sapUiResponsiveMargin" width="auto">
+		<List id="invoiceRemoteList" items="{ path: 'remoteInvoice>/Invoices' , sorter: { path: 'ShipperName', group:true} }">
+			<headerToolbar>
+				<Toolbar>
+					<Title text="{i18n>invoiceRemoteToolbarText}"/>
+					<ToolbarSpacer/>
+					<SearchField placeholder="{i18n>productName}" width="50%" search="onSearchInvoices"/>
+				</Toolbar>
+			</headerToolbar>
+			<items>
+				<ObjectListItem title="{remoteInvoice>Quantity} x {remoteInvoice>ProductName}"
+					number="{ parts: [{path: 'remoteInvoice>ExtendedPrice'}, {path: 'view>/currency'}], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false } }"
+					numberUnit="{view>/currency}" numberState="{=${remoteInvoice>ExtendedPrice} > 40 ? 'Error' : 'Success' }" type="Navigation"
+					press="onNavToDetail">
+					<firstStatus>
+						<ObjectStatus text="{ path: 'Discount', formatter : '.formatter.discountText' }"/>
+					</firstStatus>
+				</ObjectListItem>
+			</items>
+		</List>
+	</Panel>
+</mvc:View>

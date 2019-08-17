@@ -1,0 +1,134 @@
+{
+	"_version": "1.3.0",
+	"sap.app": {
+		"_version": "1.3.0",
+		"id": "eprs.walkthrough.app",
+		"type": "application",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"dataSources": {
+			"invoiceRemote": {
+				"uri": "/NWDATA/V2/Northwind/Northwind.svc/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0"
+				}
+			}
+		},
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
+		}
+	},
+	"sap.ui": {
+		"_version": "1.3.0",
+		"technology": "UI5",
+		"supportedThemes": [
+			"sap_belize"
+		],
+		"deviceTypes": {
+			"phone": true,
+			"tablet": true,
+			"desktop": true
+		}
+	},
+	"sap.ui5": {
+		"_version": "1.2.0",
+		"rootView": {
+			"viewName": "eprs.walkthrough.app.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.63.0",
+			"libs": {
+				"sap.f": {},
+				"sap.m": {},
+				"sap.ui.commons": {
+					"minVersion": ""
+				},
+				"sap.ui.comp": {
+					"minVersion": ""
+				},
+				"sap.ui.core": {},
+				"sap.ui.layout": {
+					"minVersion": ""
+				},
+				"sap.ui.table": {
+					"minVersion": ""
+				},
+				"sap.ushell": {
+					"minVersion": ""
+				},
+				"sap.uxap": {
+					"minVersion": ""
+				}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "eprs.walkthrough.app.i18n.i18n"
+				}
+			},
+			"invoice": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/Invoices.json"
+			},
+			"remoteInvoice": {
+				"dataSource": "invoiceRemote"
+			}
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "eprs.walkthrough.app.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "detail/{invoicePath}",
+					"name": "detail",
+					"target": "detail"
+				},
+				{
+					"pattern": "",
+					"name": "overview",
+					"target": "overview"
+				}
+			],
+			"targets": {
+				"overview": {
+					"viewID": "overview",
+					"viewName": "Overview",
+					"viewLevel": 0
+				},
+				"detail": {
+					"viewID": "detail",
+					"viewName": "Detail",
+					"viewLevel": 1
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/myStyle.css"
+				}
+			]
+		},
+		"handleValidation": true,
+		"contentDensities": {
+			"cozy": true,
+			"compact": true
+		}
+	}
+}

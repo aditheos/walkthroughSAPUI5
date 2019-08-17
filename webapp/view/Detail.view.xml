@@ -1,0 +1,7 @@
+<mvc:View controllerName="eprs.walkthrough.app.controller.Detail" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:wt="eprs.walkthrough.app.control">
+	<Page title="{i18n>page2Title}" showNavButton="true" navButtonPress="onNavBack">
+		<ObjectHeader intro="{remoteInvoice>ShipperName}" title="{remoteInvoice>ProductName}"/>
+		<wt:ProductRating id="rating" class="sapUiSmallMarginBeginEnd" change=".onRatingChange"/>
+	</Page>
+</mvc:View>
